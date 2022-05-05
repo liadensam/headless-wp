@@ -2,9 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
-import { getSettings, getPosts } from "../lib/api";
+import { getSettings } from "../lib/api";
 
-export default function Home({ settings, posts }) {
+export default function Home({ settings }) {
+  // console.log(settings);
+  // console.log(posts)
   return (
     <div className={styles.container}>
       <Head>
@@ -15,12 +17,12 @@ export default function Home({ settings, posts }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href={settings.url}>{settings.title}</a>
+          Welcome to <a href={settings.url}>Your Title</a>
         </h1>
 
         <p className={styles.description}>
           What's your App about?{" "}
-          <code className={styles.code}>{settings.description}</code>
+          <code className={styles.code}>Your Tagline</code>
         </p>
 
         <p className={styles.description}>
@@ -29,13 +31,10 @@ export default function Home({ settings, posts }) {
         </p>
 
         <div className={styles.grid}>
-     
-          {posts.edges.map(({ node }) => (
-            <a key={node.id} className={styles.card}>
-              <h2>{node.title} &rarr;</h2>
-              <p>{node.content}</p>
-            </a>
-          ))}
+          <a className={styles.card}>
+            <h2>Your posts will be displayed here &rarr;</h2>
+            <p>We'll create a query with WP GraphQL to fecth all your posts.</p>
+          </a>
         </div>
       </main>
 
@@ -57,9 +56,8 @@ export default function Home({ settings, posts }) {
 
 export async function getStaticProps() {
   const settings = await getSettings();
-  const posts = await getPosts();
 
   return {
-    props: { settings, posts },
+    props: { settings },
   };
 }
