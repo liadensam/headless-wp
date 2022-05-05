@@ -2,9 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
-import { getSettings } from "../lib/api";
+import { getSettings, getPosts } from "../lib/api";
 
-export default function Home({ settings }) {
+export default function Home({ settings, posts }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -15,12 +15,12 @@ export default function Home({ settings }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href={settings.url}>Your Title</a>
+          Welcome to <a href={settings.url}>{settings.title}</a>
         </h1>
 
         <p className={styles.description}>
           What's your App about?{" "}
-          <code className={styles.code}>Your Tagline</code>
+          <code className={styles.code}>{settings.description}</code>
         </p>
 
         <p className={styles.description}>
@@ -29,18 +29,13 @@ export default function Home({ settings }) {
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Your posts will come here &rarr;</h2>
-            <p>We'll create a query with WPGraphQL and render it here</p>
-          </a>
-
-          {/* Here's a hint on the Map Loop  */}
-          {/* {xxx.map(({ xxx }) => (
-            <a key={xxx.id} className={styles.card}>
-              <h2>{xxx.title} &rarr;</h2>
-              <p>{xxx.content}</p>
+     
+          {posts.edges.map(({ node }) => (
+            <a key={node.id} className={styles.card}>
+              <h2>{node.title} &rarr;</h2>
+              <p>{node.content}</p>
             </a>
-          ))} */}
+          ))}
         </div>
       </main>
 
@@ -62,8 +57,9 @@ export default function Home({ settings }) {
 
 export async function getStaticProps() {
   const settings = await getSettings();
+  const posts = await getPosts();
 
   return {
-    props: { settings },
+    props: { settings, posts },
   };
 }

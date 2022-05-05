@@ -1,6 +1,21 @@
-# A statically generated blog example using Next.js and WordPress
+# Headless WordPress 
 
-This example showcases Next.js's [Static Generation](https://nextjs.org/docs/basic-features/pages) feature using [WordPress](https://wordpress.org) as the data source.
+## Set up WordPress
+- Download for free [LocalWP](https://localwp.com/ )
+- From the WP Dashboard, install and activate [WPGraphQL](https://www.wpgraphql.com/) 
+- From the WP Dashboard, install and activate [WPGraphQL](https://www.wpgraphql.com/), click on GraphQL -> Settings ->  Click on (or Paste it in the Browser) the Endpoint https://yourDomain/graphql
+
+
+## 2- Set up Next.js
+using this Starter: github.com/tristan-sch/headless-wp
+
+
+## 3- Query the WP Settings with a little help using the GraphQL API 
+
+
+## 4- Create a query on your own to fetch the posts you created using the GraphQL API 
+
+
 
 ## Demo
 
