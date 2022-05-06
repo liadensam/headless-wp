@@ -2,8 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
-import { getSettings } from "../lib/api";
-import { getPosts } from "../lib/api";
+import { getSettings, getPosts } from "../lib/api";
 
 export default function Home({ settings, posts }) {
   // console.log(settings);
